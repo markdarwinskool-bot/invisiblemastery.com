@@ -3,28 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conscious Creators | The 8-Week Block Removal Protocol</title>
+    <title>Mark Darwin | YouTube Growth for Business Owners</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Georgia&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --navy: #0A1628;
+            --navy-light: #142138;
+            --coral: #E85A4F;
+            --coral-hover: #FF6B5B;
+            --cream: #FDFCFB;
+            --text-primary: #0A1628;
+            --text-secondary: #4A5568;
+            --text-light: rgba(255,255,255,0.85);
+            --text-muted: rgba(255,255,255,0.6);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        :root {
-            --bg-dark: #0f0f0f;
-            --bg-section: #141414;
-            --bg-card: #1a1a1a;
-            --bg-card-hover: #222222;
-            --white: #FFFFFF;
-            --text-primary: #FFFFFF;
-            --text-secondary: rgba(255, 255, 255, 0.7);
-            --text-muted: rgba(255, 255, 255, 0.5);
-            --border: rgba(255, 255, 255, 0.1);
-            --border-light: rgba(255, 255, 255, 0.15);
         }
 
         html {
@@ -32,1071 +31,1102 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--bg-dark);
+            font-family: 'Instrument Sans', sans-serif;
+            background: var(--cream);
             color: var(--text-primary);
-            line-height: 1.8;
-            font-size: 18px;
-            font-weight: 400;
-            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
+        /* Typography */
         h1, h2, h3 {
-            font-family: Georgia, 'Times New Roman', serif;
+            font-family: 'DM Serif Display', serif;
             font-weight: 400;
-            line-height: 1.3;
-            letter-spacing: -0.02em;
+            line-height: 1.15;
         }
 
-        .container {
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* Header */
-        header {
-            padding: 20px 0;
+        /* Navigation */
+        nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(15, 15, 15, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 100;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .header-content {
+            z-index: 1000;
+            padding: 1.25rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
         }
 
         .logo {
-            font-family: Georgia, serif;
-            font-size: 18px;
-            font-weight: 400;
-            color: var(--text-primary);
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
-
-        .header-cta {
-            background: var(--white);
-            color: var(--bg-dark);
-            padding: 12px 28px;
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.35rem;
+            color: #fff;
             text-decoration: none;
-            font-size: 14px;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-cta {
+            padding: 0.75rem 1.75rem;
+            background: var(--coral);
+            color: #fff;
+            text-decoration: none;
             font-weight: 600;
-            letter-spacing: 0.02em;
-            transition: all 0.2s ease;
-        }
-
-        .header-cta:hover {
-            background: rgba(255, 255, 255, 0.9);
-        }
-
-        /* Hero */
-        .hero {
-            padding: 140px 0 60px;
-            text-align: center;
-            background: var(--bg-dark);
-        }
-
-        .hero-label {
-            display: inline-block;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 24px;
-        }
-
-        .hero h1 {
-            font-size: clamp(38px, 5vw, 56px);
-            margin-bottom: 20px;
-            color: var(--text-primary);
-        }
-
-        .hero-sub {
-            font-size: 19px;
-            color: var(--text-secondary);
-            max-width: 560px;
-            margin: 0 auto 40px;
-            line-height: 1.7;
-        }
-
-        /* Video Box */
-        .video-container {
-            max-width: 640px;
-            margin: 0 auto 40px;
-            background: var(--bg-card);
-            aspect-ratio: 16/9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            border: 1px solid var(--border);
-        }
-
-        .video-placeholder {
-            color: var(--text-primary);
-            text-align: center;
-        }
-
-        .play-btn {
-            width: 80px;
-            height: 80px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 16px;
-            cursor: pointer;
+            font-size: 0.9rem;
+            border-radius: 6px;
             transition: all 0.3s ease;
         }
 
-        .play-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.5);
+        .nav-cta:hover {
+            background: var(--coral-hover);
+            transform: translateY(-2px);
         }
 
-        .play-btn svg {
-            width: 24px;
-            height: 24px;
-            fill: var(--text-primary);
-            margin-left: 4px;
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: var(--navy);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
         }
 
-        .video-note {
-            font-size: 13px;
-            color: var(--text-muted);
-            letter-spacing: 0.05em;
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 150%;
+            background: radial-gradient(ellipse, rgba(232, 90, 79, 0.08) 0%, transparent 60%);
+            pointer-events: none;
         }
 
-        /* CTA Button */
-        .cta-btn {
-            display: inline-block;
-            background: var(--white);
-            color: var(--bg-dark);
-            padding: 20px 48px;
-            text-decoration: none;
-            font-size: 16px;
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+        }
+
+        .hero-content {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 8rem 2rem 6rem;
+            position: relative;
+            z-index: 10;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.25rem;
+            background: rgba(232, 90, 79, 0.15);
+            border: 1px solid rgba(232, 90, 79, 0.3);
+            border-radius: 100px;
+            color: var(--coral);
+            font-size: 1rem;
             font-weight: 600;
-            letter-spacing: 0.02em;
-            transition: all 0.2s ease;
-            border: 2px solid var(--white);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease;
         }
 
-        .cta-btn:hover {
-            background: transparent;
-            color: var(--white);
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--coral);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
         }
 
-        .cta-wrapper {
-            text-align: center;
-            margin: 50px 0;
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
 
-        /* Section Base */
-        section {
-            padding: 80px 0;
-            background: var(--bg-dark);
+        .hero h1 {
+            font-size: clamp(3.5rem, 7vw, 5.5rem);
+            color: #fff;
+            max-width: 900px;
+            margin-bottom: 1.75rem;
+            animation: fadeInUp 0.8s ease 0.1s both;
         }
 
-        section.alt {
-            background: var(--bg-section);
+        .hero h1 span {
+            color: var(--coral);
         }
 
-        section h2 {
-            font-size: clamp(28px, 4vw, 40px);
-            text-align: center;
-            margin-bottom: 40px;
-            color: var(--text-primary);
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            max-width: 620px;
+            margin-bottom: 2.75rem;
+            animation: fadeInUp 0.8s ease 0.2s both;
+            line-height: 1.6;
         }
 
-        /* Reduced gap for first section after hero */
-        .first-section {
-            padding-top: 50px;
+        .hero-cta-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            animation: fadeInUp 0.8s ease 0.3s both;
         }
 
-        /* Content */
-        .content {
-            max-width: 640px;
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 1.35rem 2.75rem;
+            background: var(--coral);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.15rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: var(--coral-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(232, 90, 79, 0.3);
+        }
+
+        .btn-primary svg {
+            width: 22px;
+            height: 22px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-primary:hover svg {
+            transform: translateX(4px);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .stat {
+            text-align: left;
+        }
+
+        .stat-number {
+            font-family: 'DM Serif Display', serif;
+            font-size: 3.25rem;
+            color: #fff;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInUp 0.8s ease 0.3s both;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            max-height: 550px;
+            object-fit: contain;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Problem Section */
+        .problem {
+            padding: 7rem 2rem;
+            background: var(--cream);
+        }
+
+        .problem-content {
+            max-width: 1100px;
             margin: 0 auto;
         }
 
-        .content p {
-            margin-bottom: 24px;
-            color: var(--text-secondary);
+        .section-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 1rem;
         }
 
-        .content p.lead {
-            font-size: 22px;
+        .problem h2 {
+            font-size: clamp(2rem, 4vw, 2.75rem);
             color: var(--text-primary);
+            max-width: 700px;
+            margin-bottom: 3.5rem;
         }
 
-        .content p.bold {
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .problem-card {
+            padding: 2rem;
+            background: #fff;
+            border-radius: 12px;
+            border: 1px solid rgba(10, 22, 40, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(10, 22, 40, 0.08);
+        }
+
+        .problem-card-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+        }
+
+        .problem-card-icon svg {
+            width: 24px;
+            height: 24px;
+            color: #fff;
+        }
+
+        .problem-card h3 {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 1.15rem;
             font-weight: 600;
+            margin-bottom: 0.75rem;
             color: var(--text-primary);
         }
 
-        .content p.italic {
-            font-style: italic;
+        .problem-card p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
         }
 
-        .content p.center {
-            text-align: center;
+        /* Solution Section */
+        .solution {
+            padding: 7rem 2rem;
+            background: var(--navy);
+            position: relative;
         }
 
-        /* Highlight Box */
-        .highlight-box {
-            background: var(--bg-card);
-            padding: 32px 40px;
-            margin: 40px 0;
-            border-left: 3px solid rgba(255, 255, 255, 0.3);
+        .solution::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
         }
 
-        .highlight-box p {
-            margin-bottom: 12px;
+        .solution-content {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .solution .section-label {
+            color: var(--coral);
+        }
+
+        .solution h2 {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            color: #fff;
+            max-width: 700px;
+            margin-bottom: 1.5rem;
+        }
+
+        .solution-intro {
+            font-size: 1.15rem;
+            color: var(--text-light);
+            max-width: 650px;
+            margin-bottom: 4rem;
+        }
+
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .solution-card {
+            padding: 2rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .solution-card:hover {
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(232, 90, 79, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .solution-number {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2.5rem;
+            color: var(--coral);
+            opacity: 0.6;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .solution-card h3 {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 0.75rem;
+        }
+
+        .solution-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* About Section */
+        .about {
+            padding: 7rem 2rem;
+            background: var(--cream);
+        }
+
+        .about-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            aspect-ratio: 4/5;
+            object-fit: cover;
+            object-position: top;
+            border-radius: 16px;
+        }
+
+        .about-stats-badge {
+            position: absolute;
+            bottom: -1.5rem;
+            right: -1.5rem;
+            padding: 1.25rem 1.75rem;
+            background: var(--coral);
+            border-radius: 12px;
+            color: #fff;
+            box-shadow: 0 15px 40px rgba(232, 90, 79, 0.3);
+        }
+
+        .about-stats-badge strong {
+            display: block;
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.75rem;
+            font-weight: 400;
+        }
+
+        .about-stats-badge span {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .about-text h2 {
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.25rem;
+            line-height: 1.8;
+        }
+
+        .about-text p strong {
+            color: var(--text-primary);
+        }
+
+        .credentials {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .credential {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(10, 22, 40, 0.05);
+            border-radius: 100px;
+            font-size: 0.85rem;
             font-weight: 500;
             color: var(--text-primary);
         }
 
-        .highlight-box p:last-child {
-            margin-bottom: 0;
+        .credential svg {
+            width: 16px;
+            height: 16px;
+            color: var(--coral);
         }
 
-        /* List */
-        .check-list {
-            list-style: none;
-            margin: 40px 0;
+        /* Who This Is For */
+        .who {
+            padding: 7rem 2rem;
+            background: #fff;
         }
 
-        .check-list li {
-            padding: 18px 0;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            color: var(--text-secondary);
-        }
-
-        .check-list li:last-child {
-            border-bottom: none;
-        }
-
-        .check-list .arrow {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-
-        .check-list .result {
-            color: var(--text-muted);
-            margin-left: auto;
-        }
-
-        /* Quote */
-        .quote-block {
-            font-family: Georgia, serif;
-            font-size: 26px;
-            text-align: center;
-            padding: 40px 24px;
-            margin: 40px 0;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            color: var(--text-primary);
-            line-height: 1.5;
-        }
-
-        /* Results Grid */
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-            margin: 48px 0;
-        }
-
-        .result-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            padding: 32px;
-            transition: all 0.2s ease;
-        }
-
-        .result-card:hover {
-            border-color: var(--border-light);
-        }
-
-        .result-card.placeholder {
-            min-height: 280px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border-style: dashed;
-        }
-
-        .placeholder-icon {
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            background: var(--bg-section);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 16px;
-        }
-
-        .placeholder-icon svg {
-            width: 28px;
-            height: 28px;
-            fill: var(--text-muted);
-        }
-
-        .placeholder-text {
-            color: var(--text-muted);
-            font-size: 14px;
-        }
-
-        /* Stats */
-        .stats-row {
-            display: flex;
-            justify-content: center;
-            gap: 80px;
-            padding: 48px 0;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            margin: 48px 0;
-            flex-wrap: wrap;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-family: Georgia, serif;
-            font-size: 48px;
-            color: var(--text-primary);
-            line-height: 1;
-            margin-bottom: 8px;
-        }
-
-        .stat-label {
-            font-size: 14px;
-            color: var(--text-muted);
-            letter-spacing: 0.05em;
-        }
-
-        /* Two Column */
-        .two-col {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 32px;
-            margin: 48px 0;
-        }
-
-        @media (max-width: 768px) {
-            .two-col {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .col-card {
-            padding: 40px;
-            border: 1px solid var(--border);
-            background: var(--bg-card);
-        }
-
-        .col-card h4 {
-            font-family: 'Inter', sans-serif;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 24px;
-        }
-
-        .col-card.light {
-            background: var(--bg-card);
-            border-color: var(--border);
-        }
-
-        .col-card.light h4 {
-            color: var(--text-muted);
-        }
-
-        .col-card ul {
-            list-style: none;
-        }
-
-        .col-card li {
-            padding: 10px 0;
-            color: var(--text-secondary);
-            font-size: 16px;
-        }
-
-        .col-card.light li {
-            color: var(--text-secondary);
-        }
-
-        .col-card li::before {
-            content: '→';
-            margin-right: 12px;
-            opacity: 0.4;
-        }
-
-        .col-card.dark li::before {
-            content: '✓';
-            opacity: 1;
-        }
-
-        /* Objections */
-        .objection {
-            padding: 32px 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .objection:last-child {
-            border-bottom: none;
-        }
-
-        .objection-q {
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 12px;
-            font-size: 17px;
-        }
-
-        .objection-a {
-            color: var(--text-secondary);
-            padding-left: 20px;
-            border-left: 2px solid var(--border);
-        }
-
-        /* Deliverables */
-        .deliverables {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-            margin: 48px 0;
-        }
-
-        .deliverable {
-            padding: 32px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-        }
-
-        .deliverable h4 {
-            font-family: Georgia, serif;
-            font-size: 20px;
-            margin-bottom: 12px;
-            color: var(--text-primary);
-        }
-
-        .deliverable p {
-            color: var(--text-muted);
-            font-size: 15px;
-            line-height: 1.7;
-        }
-
-        /* FAQ */
-        .faq-item {
-            border-bottom: 1px solid var(--border);
-        }
-
-        .faq-q {
-            width: 100%;
-            background: none;
-            border: none;
-            padding: 28px 0;
-            text-align: left;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-family: Georgia, serif;
-            font-size: 20px;
-            color: var(--text-primary);
-        }
-
-        .faq-q:hover {
-            color: var(--text-secondary);
-        }
-
-        .faq-icon {
-            font-size: 24px;
-            transition: transform 0.3s ease;
-            color: var(--text-muted);
-        }
-
-        .faq-item.active .faq-icon {
-            transform: rotate(45deg);
-        }
-
-        .faq-a {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-
-        .faq-item.active .faq-a {
-            max-height: 300px;
-        }
-
-        .faq-a p {
-            color: var(--text-secondary);
-            padding-bottom: 28px;
-            line-height: 1.8;
-        }
-
-        /* Final CTA */
-        .final-section {
-            padding: 120px 0;
-            text-align: center;
-            background: var(--bg-section);
-            color: var(--text-primary);
-        }
-
-        .final-section h2 {
-            color: var(--text-primary);
-            margin-bottom: 24px;
-        }
-
-        .final-section p {
-            color: var(--text-secondary);
-            max-width: 500px;
-            margin: 0 auto 16px;
-        }
-
-        .final-section .cta-btn {
-            margin-top: 32px;
-        }
-
-        /* Typeform */
-        .typeform-section {
-            padding: 80px 0;
-            background: var(--bg-dark);
-        }
-
-        .typeform-wrapper {
-            max-width: 800px;
+        .who-content {
+            max-width: 1100px;
             margin: 0 auto;
-            border: 1px solid var(--border);
-            background: var(--bg-card);
+        }
+
+        .who h2 {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            color: var(--text-primary);
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .who-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+
+        .who-column h3 {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .who-column.for h3 {
+            color: #10B981;
+        }
+
+        .who-column.not h3 {
+            color: var(--text-secondary);
+        }
+
+        .who-list {
+            list-style: none;
+        }
+
+        .who-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.85rem 0;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .who-list li:last-child {
+            border-bottom: none;
+        }
+
+        .who-list li svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .who-column.for .who-list li svg {
+            color: #10B981;
+        }
+
+        .who-column.not .who-list li svg {
+            color: #CBD5E1;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 7rem 2rem;
+            background: var(--cream);
+        }
+
+        .testimonials-content {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .testimonials h2 {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            color: var(--text-primary);
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .testimonial-card {
+            padding: 2rem;
+            background: #fff;
+            border-radius: 12px;
+            border: 1px solid rgba(10, 22, 40, 0.06);
+        }
+
+        .testimonial-quote {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.75;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .testimonial-avatar {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        .testimonial-role {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 7rem 2rem;
+            background: var(--navy);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(ellipse, rgba(232, 90, 79, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .cta h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: #fff;
+            margin-bottom: 1.25rem;
+        }
+
+        .cta p {
+            font-size: 1.15rem;
+            color: var(--text-light);
+            margin-bottom: 2.5rem;
+        }
+
+        .cta .btn-primary {
+            padding: 1.25rem 3rem;
+            font-size: 1.1rem;
+        }
+
+        .cta-note {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
         }
 
         /* Footer */
         footer {
-            padding: 40px 0;
+            padding: 2.5rem 2rem;
+            background: var(--navy);
+            border-top: 1px solid rgba(255,255,255,0.05);
             text-align: center;
-            border-top: 1px solid var(--border);
-            background: var(--bg-dark);
         }
 
         footer p {
+            font-size: 0.85rem;
             color: var(--text-muted);
-            font-size: 14px;
+        }
+
+        footer a {
+            color: var(--text-light);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--coral);
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            body {
-                font-size: 16px;
+        @media (max-width: 1000px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
             }
 
-            section {
-                padding: 60px 0;
+            .hero-image {
+                order: -1;
             }
 
-            .hero {
-                padding: 120px 0 50px;
+            .hero-image img {
+                max-height: 350px;
             }
 
-            .stats-row {
-                gap: 40px;
+            .hero-cta-group {
+                justify-content: center;
+            }
+
+            .hero-stats {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .about-image {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .who-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-stats {
+                flex-wrap: wrap;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                padding: 1rem 1.25rem;
+            }
+
+            .nav-cta {
+                padding: 0.6rem 1.25rem;
+                font-size: 0.85rem;
+            }
+
+            .hero-content {
+                padding: 7rem 1.25rem 4rem;
+            }
+
+            .hero-stats {
+                gap: 1.5rem;
             }
 
             .stat-number {
-                font-size: 36px;
+                font-size: 2rem;
+            }
+
+            .problem, .solution, .about, .who, .testimonials, .cta {
+                padding: 4rem 1.25rem;
+            }
+
+            .about-stats-badge {
+                right: 0;
+                bottom: -1rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="header-content">
-            <div class="logo">Conscious Creators</div>
-            <a href="#apply" class="header-cta">Apply Now</a>
-        </div>
-    </header>
 
-    <!-- Hero -->
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">Mark Darwin</a>
+        <a href="https://calendly.com/themarkdarwin/discoverywithmark" class="nav-cta">Book a Call</a>
+    </nav>
+
+    <!-- Hero Section -->
     <section class="hero">
-        <div class="container">
-            <span class="hero-label">For Serious Players Only</span>
-            <h1>You Already Know You're Capable of More. Let's Unlock It.</h1>
-            <p class="hero-sub">There's a version of you that's been waiting to unlock your full potential. I help you access it — in 8 weeks.</p>
-
-            <div class="video-container">
-                <div class="video-placeholder">
-                    <div class="play-btn">
-                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-badge">Now Accepting Clients</div>
+                <h1>I Help Business Owners Scale With <span>YouTube</span></h1>
+                <p class="hero-subtitle">Get predictable leads and clients using YouTube — without becoming a full-time content creator. The same system I used to build 93k subscribers in under a year.</p>
+                <div class="hero-cta-group">
+                    <a href="https://calendly.com/themarkdarwin/discoverywithmark" class="btn-primary">
+                        Book Your Free Strategy Call
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number">93k+</div>
+                        <div class="stat-label">Subscribers Built</div>
                     </div>
-                    <p class="video-note">Watch this first</p>
+                    <div class="stat">
+                        <div class="stat-number">$50k+</div>
+                        <div class="stat-label">Revenue in 8 Months</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">1M+</div>
+                        <div class="stat-label">Views Generated</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">&lt;12</div>
+                        <div class="stat-label">Months to Scale</div>
+                    </div>
                 </div>
             </div>
-
-            <a href="#apply" class="cta-btn">Yes, I'm Ready</a>
-        </div>
-    </section>
-
-    <!-- Section: The Truth -->
-    <section class="first-section alt">
-        <div class="container">
-            <h2>Let me ask you something.</h2>
-            
-            <div class="content">
-                <p class="lead">Do you ever feel like there's a version of you that should exist by now — but doesn't?</p>
-                
-                <p>Like you've done the work. You've invested in yourself. You've put in more effort than most people would even consider. And yet... something's off.</p>
-                
-                <p>There's a gap between where you are and where you know you should be. You can feel it. It's not about being ungrateful — it's about knowing, deep down, that you haven't fully arrived yet.</p>
-                
-                <p class="bold">And here's the thing — that feeling is trying to tell you something.</p>
-                
-                <p>There's a pattern running underneath everything you do. It's been there for years. And it's quietly deciding — before you even get started — how far you're allowed to go.</p>
-
-                <div class="highlight-box">
-                    <p>Your results aren't just about how hard you work.</p>
-                    <p>They're about what you're internally allowing yourself to receive.</p>
-                    <p>And right now, there's a limit on that.</p>
-                </div>
-
-                <p>That limit keeps showing up in different ways. Different projects. Different strategies. Same ceiling.</p>
-                
-                <p>Until that changes, nothing on the outside will either.</p>
-            </div>
-
-            <div class="cta-wrapper">
-                <a href="#apply" class="cta-btn">I Want To Change This</a>
+            <div class="hero-image">
+                <img src="hero-photo.png" alt="Mark Darwin">
             </div>
         </div>
     </section>
 
-    <!-- Section: What You've Tried -->
-    <section>
-        <div class="container">
-            <h2>You've probably already tried to fix this.</h2>
-            
-            <div class="content">
-                <ul class="check-list">
-                    <li><span class="arrow">→</span> Working more hours <span class="result">exhausted, same place</span></li>
-                    <li><span class="arrow">→</span> New strategies, new offers <span class="result">short bump, then back to normal</span></li>
-                    <li><span class="arrow">→</span> Coaches and courses <span class="result">good ideas, nothing really moved</span></li>
-                    <li><span class="arrow">→</span> Mindset content <span class="result">felt good for a bit, then faded</span></li>
-                    <li><span class="arrow">→</span> Therapy <span class="result">helpful for other things, not this</span></li>
-                    <li><span class="arrow">→</span> Journaling, meditation, all of it <span class="result">nice, but no real shift</span></li>
-                </ul>
-
-                <p>None of those things are wrong. They just don't go deep enough.</p>
-                
-                <p class="bold">Because the thing holding you back isn't in your strategies. It's in you.</p>
-                
-                <p>Think of it like this: your sense of self is like a container. Your results can only grow as big as that container allows. If there's a crack in it — a hidden limit on what you believe is possible — then everything you try to build will leak out.</p>
-                
-                <p>You can learn every tactic in the world. But if the you trying to use them has a ceiling, those tactics won't perform the way they're supposed to.</p>
-            </div>
-
-            <div class="cta-wrapper">
-                <a href="#apply" class="cta-btn">Help Me Expand My Container</a>
+    <!-- Problem Section -->
+    <section class="problem">
+        <div class="problem-content">
+            <div class="section-label">The Problem</div>
+            <h2>You know YouTube works. But you don't have time to figure it out.</h2>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="problem-card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3>Time-Starved</h3>
+                    <p>You're running a business. You don't have 20 hours a week to learn algorithms, editing, and thumbnails from scratch.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
+                        </svg>
+                    </div>
+                    <h3>Information Overload</h3>
+                    <p>Endless YouTube tutorials about YouTube. Most from people who've never actually built a channel that makes money.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 3v1.5M3 21v-6m0 0l2.77-.693a9 9 0 016.208.682l.108.054a9 9 0 006.086.71l3.114-.732a48.524 48.524 0 01-.005-10.499l-3.11.732a9 9 0 01-6.085-.711l-.108-.054a9 9 0 00-6.208-.682L3 4.5M3 15V4.5" />
+                        </svg>
+                    </div>
+                    <h3>No Clear Strategy</h3>
+                    <p>Random videos. Inconsistent posting. Zero connection between your content and your actual business goals.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Section: What I Do -->
-    <section class="alt">
-        <div class="container">
-            <h2>Here's what I actually do.</h2>
-            
-            <div class="content">
-                <p>I work with people who've put in the work but aren't seeing results that match.</p>
-                
-                <p>They don't need more information. They don't need someone to hold them accountable. They don't need motivation.</p>
-                
-                <p class="bold">They need someone to help them find and remove the invisible pattern that's been limiting them for years.</p>
-
-                <p class="quote-block">"I help you locate the exact thing that's been capping your potential — and I help you remove it. In 8 weeks. For good."</p>
-
-                <p>Once it's gone, everything starts to shift:</p>
-                
-                <p>→ Decisions that used to feel heavy become clear<br>
-                → Opportunities you couldn't see before start appearing<br>
-                → Your income grows — not because you pushed harder, but because you've changed<br>
-                → Things that used to drain you start feeling easy</p>
-                
-                <p class="bold">Not because you forced it. Because the old version of you — the one with the limit — is gone.</p>
-            </div>
-
-            <div class="cta-wrapper">
-                <a href="#apply" class="cta-btn">I Want This</a>
+    <!-- Solution Section -->
+    <section class="solution">
+        <div class="solution-content">
+            <div class="section-label">The Solution</div>
+            <h2>A YouTube channel that actually generates clients.</h2>
+            <p class="solution-intro">I don't teach generic "YouTube tips." I help you build a strategic content machine — videos that position you as the authority and convert viewers into paying clients.</p>
+            <div class="solution-grid">
+                <div class="solution-card">
+                    <div class="solution-number">01</div>
+                    <h3>Strategic Positioning</h3>
+                    <p>Define exactly what you stand for. Messaging that attracts your ideal clients and repels everyone else.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-number">02</div>
+                    <h3>Content That Converts</h3>
+                    <p>Not vanity metrics. Videos designed to build trust, demonstrate expertise, and lead to sales calls.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-number">03</div>
+                    <h3>Sustainable Systems</h3>
+                    <p>Workflows that don't require you to become a full-time creator. Quality over quantity, always.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-number">04</div>
+                    <h3>Direct Coaching</h3>
+                    <p>Personalized strategy, accountability, and feedback. Not a course you'll never finish — real implementation.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Section: Results -->
-    <section id="results">
-        <div class="container">
-            <h2>This is what becomes possible.</h2>
-            
-            <div class="content">
-                <p class="center">These aren't just stories. This is what happens when you stop fighting yourself and finally unlock what's been waiting inside you.</p>
-            </div>
-
-            <div class="results-grid">
-                <div class="result-card placeholder">
-                    <div class="placeholder-icon">
-                        <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                    </div>
-                    <p class="placeholder-text">Testimonial Coming Soon</p>
-                </div>
-                <div class="result-card placeholder">
-                    <div class="placeholder-icon">
-                        <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                    </div>
-                    <p class="placeholder-text">Testimonial Coming Soon</p>
-                </div>
-                <div class="result-card placeholder">
-                    <div class="placeholder-icon">
-                        <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                    </div>
-                    <p class="placeholder-text">Testimonial Coming Soon</p>
-                </div>
-                <div class="result-card placeholder">
-                    <div class="placeholder-icon">
-                        <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                    </div>
-                    <p class="placeholder-text">Testimonial Coming Soon</p>
-                </div>
-                <div class="result-card placeholder">
-                    <div class="placeholder-icon">
-                        <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                    </div>
-                    <p class="placeholder-text">Testimonial Coming Soon</p>
-                </div>
-                <div class="result-card placeholder">
-                    <div class="placeholder-icon">
-                        <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                    </div>
-                    <p class="placeholder-text">Testimonial Coming Soon</p>
+    <!-- About Section -->
+    <section class="about">
+        <div class="about-content">
+            <div class="about-image">
+                <img src="here-we-go.png" alt="Mark Darwin">
+                <div class="about-stats-badge">
+                    <strong>$50k+</strong>
+                    <span>Revenue in 8 Months</span>
                 </div>
             </div>
-
-            <div class="stats-row">
-                <div class="stat">
-                    <div class="stat-number">8</div>
-                    <div class="stat-label">Weeks</div>
+            <div class="about-text">
+                <div class="section-label">About</div>
+                <h2>I'm Mark. I built what most people only talk about.</h2>
+                <p>In under 12 months, I grew a YouTube channel to <strong>93,000 subscribers</strong> with multiple videos hitting over a million views. Not through hacks or trends — through understanding what actually makes people watch, trust, and buy.</p>
+                <p>Before YouTube, I worked with ultra-high-net-worth clients on superyachts. I learned how wealth really operates. Now I help coaches, consultants, and entrepreneurs use YouTube as the most powerful client acquisition channel that exists.</p>
+                <p><strong>This isn't theory.</strong> Everything I teach comes from doing it myself first.</p>
+                <div class="credentials">
+                    <div class="credential">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        93k+ Subscribers
+                    </div>
+                    <div class="credential">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        $50k+ in 8 Months
+                    </div>
+                    <div class="credential">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        Multi-Viral Videos
+                    </div>
+                    <div class="credential">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        Monetized in Months
+                    </div>
                 </div>
-                <div class="stat">
-                    <div class="stat-number">2-5x</div>
-                    <div class="stat-label">Typical Growth</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">1:1</div>
-                    <div class="stat-label">Direct Access</div>
-                </div>
-            </div>
-
-            <div class="cta-wrapper">
-                <a href="#apply" class="cta-btn">I Want This Too</a>
             </div>
         </div>
     </section>
 
-    <!-- Section: How It Works -->
-    <section class="alt">
-        <div class="container">
-            <h2>Why this works when other things haven't.</h2>
-            
-            <div class="content">
-                <p>Most people trying to help you are focused on your habits, your routines, your daily actions. And that's fine — but it's surface level.</p>
-                
-                <p>The real shift happens deeper. At the level of who you believe you are. That's where I work.</p>
-                
-                <p class="bold">Other approaches try to change what you do. I help you change who's doing it.</p>
-            </div>
-
-            <div class="two-col">
-                <div class="col-card light">
-                    <h4>What Others Focus On</h4>
-                    <ul>
-                        <li>Your thoughts</li>
-                        <li>Your habits</li>
-                        <li>Your daily routines</li>
-                        <li>Your motivation</li>
-                        <li>Your business strategy</li>
+    <!-- Who This Is For -->
+    <section class="who">
+        <div class="who-content">
+            <h2>Is This For You?</h2>
+            <div class="who-grid">
+                <div class="who-column for">
+                    <h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="24" height="24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        This Is For You If...
+                    </h3>
+                    <ul class="who-list">
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                            </svg>
+                            You're a coach, consultant, or entrepreneur with a proven offer
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                            </svg>
+                            You want clients coming to you instead of chasing them
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                            </svg>
+                            You're willing to invest in building a long-term asset
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                            </svg>
+                            You want a strategy, not just tactics
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                            </svg>
+                            You're ready to show up and do the work
+                        </li>
                     </ul>
                 </div>
-                <div class="col-card dark">
-                    <h4>What I Help You Shift</h4>
-                    <ul>
-                        <li>How you see yourself</li>
-                        <li>The patterns running underneath</li>
-                        <li>What you believe is possible for you</li>
-                        <li>Your internal set-point</li>
-                        <li>The limits you didn't know you had</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="content">
-                <p>Think about it like this: imagine you're running on a phone with a bug in the software. You keep downloading new apps — new strategies, new tools — but the bug keeps crashing everything.</p>
-                
-                <p class="bold">I don't give you more apps. I help you find the bug and get rid of it.</p>
-                
-                <p>That's why the change is fast. That's why it lasts. And that's why this works for people who've already tried everything else.</p>
-            </div>
-
-            <div class="cta-wrapper">
-                <a href="#apply" class="cta-btn">Help Me Find My Bug</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section: Objections -->
-    <section>
-        <div class="container">
-            <h2>If you're still reading, let me address what's probably on your mind.</h2>
-            
-            <div class="content">
-                <p class="center bold">It's completely normal to have doubts. Here's what most people are thinking at this point:</p>
-            </div>
-
-            <div class="content">
-                <div class="objection">
-                    <div class="objection-q">"I don't have time for another thing."</div>
-                    <div class="objection-a">This isn't about adding more to your plate. It's about removing the thing that's been making everything harder than it needs to be. One shift here saves you years.</div>
-                </div>
-                <div class="objection">
-                    <div class="objection-q">"What if it doesn't work for me?"</div>
-                    <div class="objection-a">The principles behind this work the same way for everyone. It's not about luck or being special — it's about how the mind actually works.</div>
-                </div>
-                <div class="objection">
-                    <div class="objection-q">"Can changing something internal really change my income?"</div>
-                    <div class="objection-a">Your income is a result. Results come from actions. Actions come from how you see yourself and what you believe is possible. Change that, and everything downstream changes too.</div>
-                </div>
-                <div class="objection">
-                    <div class="objection-q">"This sounds a bit out there."</div>
-                    <div class="objection-a">I get it. But the results speak for themselves. This isn't about crystals or meditation — it's about understanding how your mind has been working against you and fixing that.</div>
-                </div>
-                <div class="objection">
-                    <div class="objection-q">"I feel like I should be able to figure this out on my own."</div>
-                    <div class="objection-a">If you could have, you probably would have by now. The thing holding you back is invisible to you — that's exactly why you need someone else to help you see it.</div>
-                </div>
-                <div class="objection">
-                    <div class="objection-q">"It's not the right time."</div>
-                    <div class="objection-a">There's never a perfect time. And every month that passes, you're leaving potential on the table. The question is: how much longer do you want to wait?</div>
-                </div>
-            </div>
-
-            <div class="cta-wrapper">
-                <a href="#apply" class="cta-btn">I'm Done Waiting</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section: Who This Is For -->
-    <section class="alt">
-        <div class="container">
-            <h2>This isn't for everyone.</h2>
-
-            <div class="two-col">
-                <div class="col-card light">
-                    <h4>This Isn't For You If</h4>
-                    <ul>
-                        <li>You think working harder is the answer</li>
-                        <li>You're looking for someone to motivate you</li>
-                        <li>You're more interested in tactics than real change</li>
-                        <li>You're not willing to invest in yourself</li>
-                        <li>You want someone to do the work for you</li>
-                    </ul>
-                </div>
-                <div class="col-card dark">
-                    <h4>This Is For You If</h4>
-                    <ul>
-                        <li>You've tried the external stuff and it didn't stick</li>
-                        <li>You feel like there's more inside you that wants to come out</li>
-                        <li>You're already doing well but know you're capable of more</li>
-                        <li>You're ready to look at what's really going on</li>
-                        <li>You're serious about becoming the fullest version of yourself</li>
+                <div class="who-column not">
+                    <h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="24" height="24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                        </svg>
+                        This Is Not For You If...
+                    </h3>
+                    <ul class="who-list">
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                            You're looking for a get-rich-quick scheme
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                            You don't have a real business or offer yet
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                            You want someone to do all the work for you
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                            You're not serious about investing in growth
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                            You expect results without putting in any effort
+                        </li>
                     </ul>
                 </div>
             </div>
-
-            <div class="content" style="margin-top: 48px;">
-                <p class="center">You've already proven you can achieve things.</p>
-                <p class="center bold">Now it's time to unlock what's been waiting on the other side.</p>
-            </div>
-
-            <div class="cta-wrapper">
-                <a href="#apply" class="cta-btn">This Is For Me</a>
-            </div>
         </div>
     </section>
 
-    <!-- Section: The Container -->
-    <section>
-        <div class="container">
-            <h2>Here's what you get in the 8 weeks.</h2>
-            
-            <div class="content">
-                <p class="center">You work directly with me. No team. No assistants. Just me and you.</p>
-            </div>
-
-            <div class="deliverables">
-                <div class="deliverable">
-                    <h4>8 Private Sessions</h4>
-                    <p>One-on-one calls designed specifically around what's going on for you. No cookie-cutter approach.</p>
-                </div>
-                <div class="deliverable">
-                    <h4>Direct Access Between Calls</h4>
-                    <p>Voice notes whenever you need them. Real shifts don't wait for scheduled appointments.</p>
-                </div>
-                <div class="deliverable">
-                    <h4>Foundation Training</h4>
-                    <p>You'll understand exactly how this works before we even start. No guessing, no confusion.</p>
-                </div>
-                <div class="deliverable">
-                    <h4>Private Community</h4>
-                    <p>A small group of people going through the same thing. Support from others who get it.</p>
-                </div>
-            </div>
-
-            <div class="content">
-                <p class="center">This isn't about more information. It's not about someone cheering you on.</p>
-                <p class="center bold">It's about finally becoming the person you've always known you could be.</p>
-            </div>
-
-            <div class="cta-wrapper">
-                <a href="#apply" class="cta-btn">I'm Ready To Apply</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section: FAQ -->
-    <section class="alt">
-        <div class="container">
-            <h2>A few questions you might have.</h2>
-
-            <div class="content">
-                <div class="faq-item">
-                    <button class="faq-q">
-                        Is this a manifestation thing?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-a">
-                        <p>No. No vision boards, no affirmations, none of that. This is practical work on the patterns that have been running your life. The changes show up in your results, not just how you feel.</p>
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="testimonials-content">
+            <h2>What People Are Saying</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">"The knowledge drops alone are worth 10x what I paid. Mark actually knows what he's talking about — and it shows in the results."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">AL</div>
+                        <div>
+                            <div class="testimonial-name">Alex L.</div>
+                            <div class="testimonial-role">Entrepreneur</div>
+                        </div>
                     </div>
                 </div>
-                <div class="faq-item">
-                    <button class="faq-q">
-                        How is this different from coaching?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-a">
-                        <p>Most coaching focuses on giving you better strategies. I focus on changing the person using them. We don't touch your business tactics — you already know how to do what you do. We focus on unlocking more of you.</p>
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">"This is the stuff everyone is scared to talk about but we need to hear. Mark's approach is different — honest, direct, and it actually works."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">MS</div>
+                        <div>
+                            <div class="testimonial-name">Mason S.</div>
+                            <div class="testimonial-role">Coach</div>
+                        </div>
                     </div>
                 </div>
-                <div class="faq-item">
-                    <button class="faq-q">
-                        How quickly will things change?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-a">
-                        <p>Some people feel shifts in the first session. For others it takes a few weeks to really land. The 8-week structure is designed to create lasting change, not just a temporary high.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-q">
-                        Do I need to be spiritual for this?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-a">
-                        <p>Not at all. You don't need to believe anything in particular. This is about how your mind works, not about faith. Sceptics often get the best results because they're paying attention.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-q">
-                        What exactly do I get?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-a">
-                        <p>8 private sessions with me, direct voice access between calls, training materials so you understand how everything works, and access to a private community of others doing the same work.</p>
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">"Easily the best investment I've made. This community is insanely valuable — the strategies are practical and the results speak for themselves."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">DM</div>
+                        <div>
+                            <div class="testimonial-name">Devon M.</div>
+                            <div class="testimonial-role">Consultant</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Final CTA -->
-    <section class="final-section" id="apply">
-        <div class="container">
-            <h2>You already know if this is for you.</h2>
-            <p>There's no countdown timer here. No fake urgency. If you're feeling called to this, that's the only signal you need.</p>
-            <p>I read every application myself. If we're a fit, we'll talk. If not, no hard feelings.</p>
-            <p>Either way — your next level is waiting. The only question is when you're going to step into it.</p>
-            <a href="#typeform" class="cta-btn">Apply Now</a>
-        </div>
-    </section>
-
-    <!-- Typeform -->
-    <section class="typeform-section" id="typeform">
-        <div class="container">
-            <div class="typeform-wrapper">
-                <div data-tf-widget="GgbdKoX6" data-tf-opacity="100" data-tf-iframe-props="title=Conscious Creators Application" data-tf-transitive-search-params data-tf-medium="snippet" style="width:100%;height:600px;"></div>
-                <script src="//embed.typeform.com/next/embed.js"></script>
-            </div>
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-content">
+            <h2>Ready to Build Your YouTube Engine?</h2>
+            <p>Book a free strategy call. We'll map out exactly how YouTube can work for your business — no pressure, no pitch.</p>
+            <a href="https://calendly.com/themarkdarwin/discoverywithmark" class="btn-primary">
+                Book Your Free Call
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+            </a>
+            <p class="cta-note">Calls are 15-20 minutes to see if we're the right fit.</p>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="container">
-            <p>© 2025 Conscious Creators</p>
-        </div>
+        <p>© 2026 Mark Darwin. All rights reserved. | <a href="https://youtube.com/@markdarwin" target="_blank">YouTube</a></p>
     </footer>
 
-    <!-- JavaScript -->
-    <script>
-        // FAQ Accordion
-        document.querySelectorAll('.faq-q').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const item = btn.parentElement;
-                const isActive = item.classList.contains('active');
-                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
-                if (!isActive) item.classList.add('active');
-            });
-        });
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
 </body>
 </html>
