@@ -789,9 +789,15 @@
     }
   }
 
+  function dateToIso(d) {
+    // Format Date -> YYYY-MM-DD using LOCAL components (avoids UTC timezone rollover)
+    return d.getFullYear() + '-' +
+           String(d.getMonth() + 1).padStart(2, '0') + '-' +
+           String(d.getDate()).padStart(2, '0');
+  }
+
   function todayIso() {
-    const d = new Date();
-    return d.toISOString().slice(0, 10);
+    return dateToIso(new Date());
   }
 
   function isoToDate(iso) { return new Date(iso + 'T00:00:00'); }
@@ -1023,7 +1029,7 @@
     let streak = 0;
     let d = isoToDate(viewingDate);
     while (d >= START_DATE) {
-      const iso = d.toISOString().slice(0, 10);
+      const iso = dateToIso(d);
       const day = state.days[iso];
       if (day && day.kill && day.kill[habitId]) {
         streak++;
@@ -1039,7 +1045,7 @@
     let streak = 0;
     let d = isoToDate(viewingDate);
     while (d >= START_DATE) {
-      const iso = d.toISOString().slice(0, 10);
+      const iso = dateToIso(d);
       const day = state.days[iso];
       if (day && day.build && day.build[habitId]) {
         streak++;
@@ -1115,7 +1121,7 @@
   function changeDay(delta) {
     const d = isoToDate(viewingDate);
     d.setDate(d.getDate() + delta);
-    viewingDate = d.toISOString().slice(0, 10);
+    viewingDate = dateToIso(d);
     render();
   }
 
