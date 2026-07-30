@@ -565,6 +565,109 @@
     .rating-row { flex-direction: column; align-items: flex-start; gap: 6px; }
   }
 
+  /* Top bar right group + vision button */
+  .top-bar-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .vision-btn {
+    background: transparent;
+    border: 1px solid var(--signal);
+    color: var(--signal);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    padding: 7px 14px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 150ms;
+  }
+  .vision-btn:hover {
+    background: var(--signal);
+    color: var(--bg);
+  }
+
+  /* Vision modal */
+  .vision-modal {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    z-index: 200;
+    overflow-y: auto;
+    display: none;
+    opacity: 0;
+    transition: opacity 200ms;
+  }
+  .vision-modal.open {
+    display: block;
+    opacity: 1;
+  }
+  .vision-inner {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 40px 28px 100px;
+  }
+  .vision-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 48px;
+  }
+  .vision-title {
+    font-family: var(--display);
+    font-size: 24px;
+    letter-spacing: 0.15em;
+    color: var(--text);
+  }
+  .vision-title .accent { color: var(--signal); }
+  .vision-close {
+    background: transparent;
+    border: 1px solid var(--line-strong);
+    color: var(--text-mute);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    padding: 8px 14px;
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+  .vision-close:hover { color: var(--text); border-color: var(--text); }
+  .vision-body p {
+    font-family: var(--body);
+    font-size: 20px;
+    line-height: 1.7;
+    color: var(--text);
+    margin-bottom: 28px;
+    font-weight: 400;
+  }
+  .vision-body p:first-child {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.6;
+  }
+  .vision-footer {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  @media (max-width: 600px) {
+    .vision-inner { padding: 24px 18px 80px; }
+    .vision-title { font-size: 18px; }
+    .vision-body p { font-size: 17px; margin-bottom: 22px; }
+    .vision-body p:first-child { font-size: 19px; }
+    .vision-head { margin-bottom: 32px; }
+  }
+
   /* Reduce motion */
   @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; animation: none !important; }
@@ -576,7 +679,10 @@
 
   <div class="top-bar">
     <div class="brand">THE CHOSEN MAN <span class="brand-accent">/</span> 4-MONTH PROTOCOL</div>
-    <div class="today-date" id="today-date">—</div>
+    <div class="top-bar-right">
+      <button class="vision-btn" onclick="openVision()">READ VISION</button>
+      <div class="today-date" id="today-date">—</div>
+    </div>
   </div>
 
   <!-- SIGNATURE: DAY COUNTER -->
@@ -714,6 +820,27 @@
     </div>
   </div>
 
+</div>
+
+<!-- VISION MODAL -->
+<div class="vision-modal" id="vision-modal" onclick="closeVisionOnBackdrop(event)">
+  <div class="vision-inner">
+    <div class="vision-head">
+      <div class="vision-title">THE VISION <span class="accent">/</span> 30 NOV 2026</div>
+      <button class="vision-close" onclick="closeVision()">CLOSE ✕</button>
+    </div>
+    <div class="vision-body">
+      <p>I am Mark Darwin. I permeate, penetrate and fill the interspaces of the universe with my actions. I am unshakeable. I am consistent. I am immovable. I am a man of great power.</p>
+      <p>I hold my floor and my ceiling at the same time. The PSO role with HMPPS is mine. Steady, disciplined, structured. The Chosen Man runs alongside it. Coaching, content, community, sponsorships. Two engines. Neither threatens the other. Both compound.</p>
+      <p>My debts are gone. Every pound coming in has a destination I chose in advance. I spend only on what serves the mission: my body, my business, my woman. Nothing else earns my money.</p>
+      <p>The motorbike is in my garage. Bought clean. Bought earned. It is not a reward. It is a receipt.</p>
+      <p>I wake at 5am and the alarm doesn't have to fight me. I train five days a week. I eat what I prepped. I'm asleep by 11pm. My phone doesn't sit next to me while I work. My work blocks are cathedral hours. Nothing interrupts them.</p>
+      <p>I read every day. I am honing my speaking skills in Persian continuously and taking care of her where I can. I move on camera with authority. I close prospects without softness or apology.</p>
+      <p>I do what has to be done, not what feels right. Discipline is not effort. It is identity. I do not negotiate with the man I used to be.</p>
+      <p>The protocol is no longer a protocol. It is who I am.</p>
+      <div class="vision-footer">Read aloud. Every morning.</div>
+    </div>
+  </div>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -1195,6 +1322,23 @@
     render();
     showToast('All data wiped');
   }
+
+  // ============ VISION MODAL ============
+  function openVision() {
+    document.getElementById('vision-modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    window.scrollTo(0, 0);
+  }
+  function closeVision() {
+    document.getElementById('vision-modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function closeVisionOnBackdrop(e) {
+    if (e.target.id === 'vision-modal') closeVision();
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeVision();
+  });
 
   // ============ TOAST ============
   let toastTimer;
