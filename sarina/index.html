@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Becoming Her — Sarina</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Lato:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FBF6F0;
+    --bg-elev: #F5EADF;
+    --bg-elev-2: #EFDDCE;
+    --line: #E5D9CB;
+    --line-strong: #D4C2AE;
+    --text: #3E2A35;
+    --text-mute: #7A5F6A;
+    --text-dim: #A89099;
+    --signal: #B87F7F;
+    --signal-soft: rgba(184, 127, 127, 0.12);
+    --gold: #B49D6B;
+    --complete: #9CA981;
+    --display: 'Cormorant Garamond', 'Georgia', serif;
+    --body: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--text); font-family: var(--body); font-weight: 400; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  body { min-height: 100vh; padding: 0 0 80px 0; }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 24px 22px; }
+
+  /* Top bar */
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 0 18px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .brand {
+    font-family: var(--display);
+    font-size: 22px;
+    font-style: italic;
+    letter-spacing: 0.02em;
+    color: var(--text);
+  }
+  .brand-accent { color: var(--signal); font-style: italic; }
+  .top-bar-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .vision-btn {
+    background: transparent;
+    border: 1px solid var(--signal);
+    color: var(--signal);
+    font-family: var(--body);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    padding: 8px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 200ms;
+  }
+  .vision-btn:hover {
+    background: var(--signal);
+    color: var(--bg);
+  }
+  .today-date {
+    font-family: var(--body);
+    font-size: 11px;
+    color: var(--text-mute);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  /* Signature: day counter */
+  .counter-block {
+    padding: 40px 0 48px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  .counter-label {
+    font-family: var(--body);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--signal);
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  .counter-day {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(110px, 24vw, 220px);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+  .counter-day .of {
+    color: var(--gold);
+    font-size: 0.35em;
+    margin-left: 12px;
+    font-style: italic;
+  }
+  .counter-remaining {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 20px;
+    color: var(--text-mute);
+    margin-top: 16px;
+  }
+  .counter-remaining span.num { color: var(--signal); font-weight: 500; }
+
+  .progress-track {
+    margin-top: 28px;
+    height: 3px;
+    background: var(--bg-elev);
+    position: relative;
+    overflow: hidden;
+    border-radius: 999px;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--signal);
+    transition: width 400ms ease-out;
+    border-radius: 999px;
+  }
+  .progress-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-family: var(--body);
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  /* Day nav */
+  .day-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 22px;
+    padding: 14px 18px;
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .day-nav button {
+    background: transparent;
+    border: 1px solid var(--line-strong);
+    color: var(--text);
+    font-family: var(--body);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    padding: 7px 14px;
+    cursor: pointer;
+    text-transform: uppercase;
+    border-radius: 999px;
+    transition: all 200ms;
+  }
+  .day-nav button:hover { border-color: var(--signal); color: var(--signal); }
+  .day-nav .current-day {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--text);
+  }
+
+  /* Sections */
+  section { margin-bottom: 48px; }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 22px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .section-title {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 32px;
+    color: var(--text);
+  }
+  .section-tag {
+    font-family: var(--body);
+    font-size: 10px;
+    color: var(--signal);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* Checklist items */
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    margin-bottom: 8px;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 12px;
+    transition: all 180ms;
+  }
+  .row:hover { background: var(--bg-elev-2); border-color: var(--line-strong); }
+  .row.done { border-color: var(--complete); background: rgba(156, 169, 129, 0.06); }
+  .row.done .row-label { color: var(--text-mute); }
+
+  .checkbox {
+    width: 22px;
+    height: 22px;
+    border: 1.5px solid var(--line-strong);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 180ms;
+  }
+  .row.done .checkbox {
+    background: var(--complete);
+    border-color: var(--complete);
+  }
+  .row.done .checkbox::after {
+    content: '';
+    width: 6px;
+    height: 10px;
+    border-right: 2px solid var(--bg);
+    border-bottom: 2px solid var(--bg);
+    transform: rotate(45deg) translateY(-2px);
+  }
+
+  .row-label {
+    flex: 1;
+    font-size: 15px;
+    color: var(--text);
+  }
+  .row-label .sub {
+    color: var(--text-dim);
+    font-size: 12px;
+    font-style: italic;
+    margin-left: 6px;
+  }
+  .row-meta {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--text-mute);
+  }
+  .row-meta.rooted {
+    color: var(--complete);
+    font-weight: 500;
+  }
+
+  /* Focused hour */
+  .focus-hour {
+    padding: 22px;
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--signal);
+    margin-top: 20px;
+    border-radius: 12px;
+  }
+  .focus-hour-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .focus-hour-title {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 22px;
+    color: var(--text);
+  }
+  .focus-hour-skill {
+    font-family: var(--body);
+    font-size: 10px;
+    color: var(--signal);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .focus-hour-body {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+  }
+  .focus-hour select {
+    background: var(--bg);
+    border: 1px solid var(--line-strong);
+    color: var(--text);
+    padding: 8px 12px;
+    font-family: var(--body);
+    font-size: 13px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .focus-hour input[type="number"] {
+    background: var(--bg);
+    border: 1px solid var(--line-strong);
+    color: var(--text);
+    padding: 8px 12px;
+    font-family: var(--body);
+    font-size: 14px;
+    width: 80px;
+    border-radius: 8px;
+  }
+  .focus-hour label { font-size: 13px; color: var(--text-mute); }
+  .focus-hour button {
+    background: var(--signal);
+    border: none;
+    color: var(--bg);
+    font-family: var(--body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-left: auto;
+    border-radius: 999px;
+    text-transform: uppercase;
+    transition: all 200ms;
+  }
+  .focus-hour button:hover { background: #a56d6d; }
+
+  /* Skill cards */
+  .skill-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .skill-card {
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    padding: 18px 20px;
+    border-radius: 12px;
+  }
+  .skill-card.active {
+    border-color: var(--signal);
+    box-shadow: inset 0 0 0 1px var(--signal-soft);
+  }
+  .skill-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 6px;
+    gap: 12px;
+  }
+  .skill-num {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 20px;
+    color: var(--gold);
+  }
+  .skill-name {
+    flex: 1;
+    font-size: 16px;
+    color: var(--text);
+    font-weight: 500;
+  }
+  .skill-hours {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 16px;
+    color: var(--text-mute);
+  }
+  .skill-hours .filled { color: var(--signal); font-weight: 500; }
+  .skill-bar {
+    height: 3px;
+    background: var(--bg);
+    margin-top: 10px;
+    overflow: hidden;
+    border-radius: 999px;
+  }
+  .skill-bar-fill {
+    height: 100%;
+    background: var(--signal);
+    transition: width 300ms;
+    border-radius: 999px;
+  }
+
+  /* Notes */
+  .notes-block textarea {
+    width: 100%;
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    color: var(--text);
+    padding: 16px 18px;
+    font-family: var(--body);
+    font-size: 14px;
+    resize: vertical;
+    min-height: 90px;
+    border-radius: 12px;
+    line-height: 1.6;
+  }
+  .notes-block textarea:focus {
+    outline: none;
+    border-color: var(--signal);
+  }
+
+  /* Review blocks */
+  .review-block {
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    padding: 22px;
+    margin-bottom: 14px;
+    border-radius: 14px;
+  }
+  .review-block.locked { opacity: 0.55; }
+  .review-block.available { border-color: var(--signal); }
+  .review-block.done { border-color: var(--complete); }
+  .review-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    cursor: pointer;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .review-title {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 22px;
+    color: var(--text);
+  }
+  .review-status {
+    font-family: var(--body);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--text-dim);
+  }
+  .review-status.available { color: var(--signal); }
+  .review-status.done { color: var(--complete); }
+  .review-body { display: none; margin-top: 18px; }
+  .review-body.open { display: block; }
+  .review-body h4 {
+    font-family: var(--body);
+    font-size: 10px;
+    color: var(--signal);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 22px 0 12px;
+  }
+  .review-body h4:first-child { margin-top: 0; }
+  .review-body textarea {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--line-strong);
+    color: var(--text);
+    padding: 12px 14px;
+    font-family: var(--body);
+    font-size: 14px;
+    resize: vertical;
+    min-height: 70px;
+    border-radius: 10px;
+    line-height: 1.6;
+  }
+  .rating-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--line);
+  }
+  .rating-row:last-child { border-bottom: none; }
+  .rating-label { flex: 1; font-size: 13px; color: var(--text); }
+  .rating-input {
+    display: flex;
+    gap: 4px;
+  }
+  .rating-dot {
+    width: 24px;
+    height: 24px;
+    border: 1px solid var(--line-strong);
+    background: transparent;
+    cursor: pointer;
+    font-family: var(--body);
+    font-size: 10px;
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 150ms;
+  }
+  .rating-dot.filled {
+    background: var(--signal);
+    border-color: var(--signal);
+    color: var(--bg);
+  }
+  .rating-dot:hover { border-color: var(--text); }
+  .review-body button.save {
+    background: var(--signal);
+    border: none;
+    color: var(--bg);
+    font-family: var(--body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    padding: 12px 26px;
+    cursor: pointer;
+    margin-top: 22px;
+    border-radius: 999px;
+    text-transform: uppercase;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 32px 0 0;
+    border-top: 1px solid var(--line);
+    margin-top: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .footer-quote {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 16px;
+    color: var(--text-mute);
+  }
+  .footer-tools {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .footer button {
+    background: transparent;
+    border: 1px solid var(--line-strong);
+    color: var(--text-mute);
+    font-family: var(--body);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    padding: 8px 16px;
+    cursor: pointer;
+    text-transform: uppercase;
+    border-radius: 999px;
+    transition: all 200ms;
+  }
+  .footer button:hover { color: var(--text); border-color: var(--text-mute); }
+  .footer button.danger:hover { color: var(--signal); border-color: var(--signal); }
+
+  /* Vision modal */
+  .vision-modal {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    z-index: 200;
+    overflow-y: auto;
+    display: none;
+    opacity: 0;
+    transition: opacity 200ms;
+  }
+  .vision-modal.open {
+    display: block;
+    opacity: 1;
+  }
+  .vision-inner {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 44px 28px 100px;
+  }
+  .vision-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 26px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 48px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .vision-title {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 30px;
+    color: var(--text);
+  }
+  .vision-title .accent { color: var(--signal); }
+  .vision-close {
+    background: transparent;
+    border: 1px solid var(--line-strong);
+    color: var(--text-mute);
+    font-family: var(--body);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    padding: 9px 16px;
+    cursor: pointer;
+    text-transform: uppercase;
+    border-radius: 999px;
+  }
+  .vision-close:hover { color: var(--text); border-color: var(--text); }
+  .vision-body p {
+    font-family: var(--body);
+    font-size: 19px;
+    line-height: 1.75;
+    color: var(--text);
+    margin-bottom: 26px;
+  }
+  .vision-body p:first-child {
+    font-size: 22px;
+    line-height: 1.6;
+    font-family: var(--display);
+    font-style: italic;
+    color: var(--text);
+  }
+  .vision-body .dots {
+    text-align: center;
+    color: var(--signal);
+    font-size: 22px;
+    margin: 32px 0;
+  }
+  .vision-footer {
+    margin-top: 44px;
+    padding-top: 26px;
+    border-top: 1px solid var(--line);
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--text-mute);
+    text-align: center;
+  }
+
+  /* Toast */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(120px);
+    background: var(--text);
+    color: var(--bg);
+    padding: 12px 22px;
+    font-family: var(--body);
+    font-size: 13px;
+    transition: transform 300ms ease-out;
+    z-index: 100;
+    border-radius: 999px;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* Mobile */
+  @media (max-width: 600px) {
+    .container { padding: 18px 14px; }
+    .counter-block { padding: 28px 0 34px; }
+    .section-title { font-size: 26px; }
+    .row { padding: 13px 14px; gap: 12px; }
+    .row-label { font-size: 14px; }
+    .focus-hour { padding: 18px; }
+    .focus-hour button { margin-left: 0; margin-top: 10px; width: 100%; }
+    .focus-hour-body { flex-wrap: wrap; }
+    .brand { font-size: 18px; }
+    .top-bar-right { width: 100%; justify-content: space-between; }
+    .day-nav .current-day { font-size: 15px; }
+    .vision-inner { padding: 24px 18px 80px; }
+    .vision-title { font-size: 22px; }
+    .vision-body p { font-size: 17px; margin-bottom: 22px; }
+    .vision-body p:first-child { font-size: 19px; }
+    .rating-row { flex-direction: column; align-items: flex-start; gap: 6px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="top-bar">
+    <div class="brand"><em>Becoming</em> <span class="brand-accent">Her</span></div>
+    <div class="top-bar-right">
+      <button class="vision-btn" onclick="openVision()">Read Vision</button>
+      <div class="today-date" id="today-date">—</div>
+    </div>
+  </div>
+
+  <!-- SIGNATURE: DAY COUNTER -->
+  <div class="counter-block">
+    <div class="counter-label">Day of your season</div>
+    <div class="counter-day" id="counter-day">01<span class="of">of 93</span></div>
+    <div class="counter-remaining"><span class="num" id="remaining-days">92</span> days remain</div>
+    <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width: 1.1%"></div></div>
+    <div class="progress-meta">
+      <span>1 AUG 2026</span>
+      <span id="pct-complete">1.1% complete</span>
+      <span>1 NOV 2026</span>
+    </div>
+  </div>
+
+  <!-- DAY NAVIGATION -->
+  <div class="day-nav">
+    <button onclick="changeDay(-1)">◀ Prev</button>
+    <div class="current-day" id="current-day-label">Day 1 · Sat 1 Aug 2026</div>
+    <button onclick="changeDay(1)">Next ▶</button>
+  </div>
+
+  <!-- RHYTHM -->
+  <section>
+    <div class="section-head">
+      <div class="section-title">Your Rhythm</div>
+      <div class="section-tag">Daily care</div>
+    </div>
+    <div id="rhythm-list"></div>
+
+    <!-- FOCUSED HOUR -->
+    <div class="focus-hour">
+      <div class="focus-hour-head">
+        <div class="focus-hour-title">The Hour</div>
+        <div class="focus-hour-skill">Focused Practice</div>
+      </div>
+      <div class="focus-hour-body">
+        <label>Skill:</label>
+        <select id="focus-skill-select"></select>
+        <label>Minutes:</label>
+        <input type="number" id="focus-minutes" min="0" max="240" value="60" step="15">
+        <button onclick="logFocusHour()">Log Session</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- RELEASE -->
+  <section>
+    <div class="section-head">
+      <div class="section-title">Release</div>
+      <div class="section-tag">Habits I did NOT do today</div>
+    </div>
+    <div id="release-list"></div>
+  </section>
+
+  <!-- BLOOM -->
+  <section>
+    <div class="section-head">
+      <div class="section-title">Bloom</div>
+      <div class="section-tag">Habits I DID today</div>
+    </div>
+    <div id="bloom-list"></div>
+  </section>
+
+  <!-- FIELD NOTE -->
+  <section class="notes-block">
+    <div class="section-head">
+      <div class="section-title">Field Note</div>
+      <div class="section-tag">One line if that's all you have</div>
+    </div>
+    <textarea id="daily-note" placeholder="How did today feel? What are you grateful for?" oninput="saveDayNote()"></textarea>
+  </section>
+
+  <!-- SKILLS -->
+  <section>
+    <div class="section-head">
+      <div class="section-title">Your Skills</div>
+      <div class="section-tag">20 hours to grow into</div>
+    </div>
+    <div class="skill-grid" id="skill-grid"></div>
+  </section>
+
+  <!-- GROWTH -->
+  <section>
+    <div class="section-head">
+      <div class="section-title">Growth</div>
+      <div class="section-tag">21 days to root a habit</div>
+    </div>
+    <div id="growth-board"></div>
+  </section>
+
+  <!-- REFLECTION -->
+  <section>
+    <div class="section-head">
+      <div class="section-title">Reflection</div>
+      <div class="section-tag">Monthly review</div>
+    </div>
+    <div id="reviews-container"></div>
+  </section>
+
+  <div class="footer">
+    <div class="footer-quote"><em>Softly. Consistently. Every day.</em></div>
+    <div class="footer-tools">
+      <button onclick="exportData()">Export Backup</button>
+      <button onclick="importData()">Import</button>
+      <button class="danger" onclick="wipeAll()">Wipe All</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- VISION MODAL -->
+<div class="vision-modal" id="vision-modal" onclick="closeVisionOnBackdrop(event)">
+  <div class="vision-inner">
+    <div class="vision-head">
+      <div class="vision-title"><em>The Woman on</em> <span class="accent">1 November</span></div>
+      <button class="vision-close" onclick="closeVision()">Close ✕</button>
+    </div>
+    <div class="vision-body">
+      <p>The changes I have made are that my body has become much stronger and healthier. I passed my Theory Test, and now I am working on my practical test. It feels amazing to know that in these past 4 months, I have achieved the things I promised myself I would do. 🤗</p>
+      <p>The things I have let go of, like sleeping late and waking up late, helped me so much. Waking up earlier means I can get everything done, and I feel much better mentally and physically. 🤭</p>
+      <p>I am really proud of myself for passing my Theory Test because I worked so hard for it. I had to take the test three times before I passed. I am also proud that I managed to find a job so I can have my own money. 🫣</p>
+      <p>I have shown my mum and dad how much I have improved in these 4 months, even through the small progress I made. The most important thing is that I have proved to myself that if I truly want something, I can achieve it. 😎</p>
+      <p>I also want Mark to know that the person he is spending his time with is someone who is worth it. 🙂</p>
+      <div class="dots">· · ·</div>
+      <div class="vision-footer">Read her every morning. You are her already.</div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<input type="file" id="file-input" accept=".json" style="display:none">
+
+<script>
+  // ============ CONFIG ============
+  const START_DATE = new Date(2026, 7, 1); // Aug 1 2026
+  const END_DATE = new Date(2026, 10, 1, 23, 59, 59); // Nov 1 2026
+  const TOTAL_DAYS = 93;
+
+  const SKILLS = [
+    { id: 1, name: 'Theory Test', target: 30 },
+    { id: 2, name: 'Building Up My Body', target: 30 },
+    { id: 3, name: 'Painting', target: 20 }
+  ];
+
+  const RHYTHM = [
+    { id: 1, name: 'Morning skincare routine' },
+    { id: 2, name: 'Night skincare routine' },
+    { id: 3, name: 'Movement', sub: '(waist, legs, glutes)' },
+    { id: 4, name: 'Cleaning and tidying up' },
+    { id: 5, name: 'Meditation before bed' },
+    { id: 6, name: 'Talking to my Azizam 🤍' },
+    { id: 7, name: 'Practicing for theory test' },
+    { id: 8, name: 'Cooking', sub: '(if today)' },
+    { id: 9, name: 'Grooming my cats', sub: '(if today)' },
+    { id: 10, name: 'Gratitude before bed' }
+  ];
+
+  const RELEASE = [
+    { id: 1, name: 'Did not sleep late' },
+    { id: 2, name: 'Did not wake up late' },
+    { id: 3, name: 'Did not delay my tasks to tomorrow' }
+  ];
+
+  const BLOOM = [
+    { id: 1, name: 'Built my body' },
+    { id: 2, name: 'Learned about animals or veterinary' },
+    { id: 3, name: 'Worked on finding a job' },
+    { id: 4, name: 'Practiced Spanish' }
+  ];
+
+  const REVIEW_DATES = [
+    { id: 'aug', label: 'End of August', date: '2026-08-30' },
+    { id: 'sep', label: 'End of September', date: '2026-09-27' },
+    { id: 'oct', label: 'End of October', date: '2026-10-25' },
+    { id: 'final', label: 'Final Reflection', date: '2026-11-01' }
+  ];
+
+  // ============ STATE ============
+  const STORAGE_KEY = 'becoming_her_sarina_v1';
+  let state = loadState();
+  let viewingDate;
+
+  function loadState() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) return JSON.parse(raw);
+    } catch (e) { console.warn('Storage load failed:', e); }
+    return { days: {}, skillHours: {}, reviews: {} };
+  }
+
+  function saveState() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch (e) {
+      showToast('Save failed');
+      console.error(e);
+    }
+  }
+
+  function dateToIso(d) {
+    return d.getFullYear() + '-' +
+           String(d.getMonth() + 1).padStart(2, '0') + '-' +
+           String(d.getDate()).padStart(2, '0');
+  }
+
+  function todayIso() {
+    return dateToIso(new Date());
+  }
+
+  function isoToDate(iso) { return new Date(iso + 'T00:00:00'); }
+
+  function dayNumber(iso) {
+    const d = isoToDate(iso);
+    return Math.floor((d - START_DATE) / (1000 * 60 * 60 * 24)) + 1;
+  }
+
+  function clampDay(iso) {
+    const dn = dayNumber(iso);
+    if (dn < 1) return '2026-08-01';
+    if (dn > TOTAL_DAYS) return '2026-11-01';
+    return iso;
+  }
+
+  function getDay(iso) {
+    if (!state.days[iso]) state.days[iso] = {
+      rhythm: {}, release: {}, bloom: {},
+      focusHour: { logged: false, minutes: 0, skillId: null },
+      note: ''
+    };
+    return state.days[iso];
+  }
+
+  // ============ RENDER ============
+  function render() {
+    viewingDate = clampDay(viewingDate);
+    renderCounter();
+    renderDayNav();
+    renderRhythm();
+    renderRelease();
+    renderBloom();
+    renderNote();
+    renderFocusHour();
+    renderSkills();
+    renderGrowth();
+    renderReviews();
+  }
+
+  function renderCounter() {
+    const dn = dayNumber(todayIso());
+    const dnClamped = Math.max(1, Math.min(TOTAL_DAYS, dn));
+    const remaining = Math.max(0, TOTAL_DAYS - dnClamped);
+    const pct = (dnClamped / TOTAL_DAYS * 100);
+    document.getElementById('counter-day').innerHTML = String(dnClamped).padStart(2, '0') + '<span class="of">of ' + TOTAL_DAYS + '</span>';
+    document.getElementById('remaining-days').textContent = remaining;
+    document.getElementById('progress-fill').style.width = pct + '%';
+    document.getElementById('pct-complete').textContent = pct.toFixed(1) + '% complete';
+    const now = new Date();
+    document.getElementById('today-date').textContent = now.toLocaleDateString('en-GB', { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric' });
+  }
+
+  function renderDayNav() {
+    const dn = dayNumber(viewingDate);
+    const d = isoToDate(viewingDate);
+    const label = `Day ${dn} · ${d.toLocaleDateString('en-GB', { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric' })}`;
+    document.getElementById('current-day-label').textContent = label;
+  }
+
+  function renderRhythm() {
+    const container = document.getElementById('rhythm-list');
+    const day = getDay(viewingDate);
+    container.innerHTML = RHYTHM.map(item => {
+      const done = day.rhythm[item.id];
+      return `<div class="row ${done ? 'done' : ''}" onclick="toggleRhythm(${item.id})">
+        <div class="checkbox"></div>
+        <div class="row-label">${item.name}${item.sub ? '<span class="sub">' + item.sub + '</span>' : ''}</div>
+      </div>`;
+    }).join('');
+  }
+
+  function renderRelease() {
+    const container = document.getElementById('release-list');
+    const day = getDay(viewingDate);
+    container.innerHTML = RELEASE.map(h => {
+      const streak = computeReleaseStreak(h.id);
+      const done = day.release[h.id];
+      return `<div class="row ${done ? 'done' : ''}" onclick="toggleRelease(${h.id})">
+        <div class="checkbox"></div>
+        <div class="row-label">${h.name}</div>
+        <div class="row-meta ${streak >= 21 ? 'rooted' : ''}">${streak >= 21 ? 'rooted' : streak + ' / 21'}</div>
+      </div>`;
+    }).join('');
+  }
+
+  function renderBloom() {
+    const container = document.getElementById('bloom-list');
+    const day = getDay(viewingDate);
+    container.innerHTML = BLOOM.map(h => {
+      const streak = computeBloomStreak(h.id);
+      const done = day.bloom[h.id];
+      return `<div class="row ${done ? 'done' : ''}" onclick="toggleBloom(${h.id})">
+        <div class="checkbox"></div>
+        <div class="row-label">${h.name}</div>
+        <div class="row-meta ${streak >= 21 ? 'rooted' : ''}">${streak >= 21 ? 'rooted' : streak + ' / 21'}</div>
+      </div>`;
+    }).join('');
+  }
+
+  function renderNote() {
+    const day = getDay(viewingDate);
+    document.getElementById('daily-note').value = day.note || '';
+  }
+
+  function renderFocusHour() {
+    const day = getDay(viewingDate);
+    const sel = document.getElementById('focus-skill-select');
+    if (!sel.options.length) {
+      sel.innerHTML = SKILLS.map(s => `<option value="${s.id}">${s.name}</option>`).join('');
+    }
+    sel.value = day.focusHour.skillId || 1;
+    document.getElementById('focus-minutes').value = day.focusHour.minutes || 60;
+  }
+
+  function renderSkills() {
+    const container = document.getElementById('skill-grid');
+    container.innerHTML = SKILLS.map(s => {
+      const hours = (state.skillHours[s.id] || 0) / 60;
+      const pct = Math.min(100, (hours / s.target) * 100);
+      return `<div class="skill-card">
+        <div class="skill-head">
+          <div class="skill-num"><em>${String(s.id).padStart(2, '0')}</em></div>
+          <div class="skill-name">${s.name}</div>
+          <div class="skill-hours"><span class="filled">${hours.toFixed(1)}</span> <em>of ${s.target}h</em></div>
+        </div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width: ${pct}%"></div></div>
+      </div>`;
+    }).join('');
+  }
+
+  function renderGrowth() {
+    const container = document.getElementById('growth-board');
+    const releaseScores = RELEASE.map(h => ({ name: h.name, streak: computeReleaseStreak(h.id), max: 21 }));
+    const bloomScores = BLOOM.map(h => ({ name: h.name, streak: computeBloomStreak(h.id), max: 21 }));
+    let html = '<div class="skill-grid">';
+    [...releaseScores, ...bloomScores].forEach(s => {
+      const pct = Math.min(100, (s.streak / s.max) * 100);
+      const rooted = s.streak >= s.max;
+      html += `<div class="skill-card ${rooted ? 'active' : ''}">
+        <div class="skill-head">
+          <div class="skill-name" style="font-size: 14px">${s.name}</div>
+          <div class="skill-hours"><em>${rooted ? 'rooted' : s.streak + ' / ' + s.max}</em></div>
+        </div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width: ${pct}%"></div></div>
+      </div>`;
+    });
+    html += '</div>';
+    container.innerHTML = html;
+  }
+
+  function renderReviews() {
+    const container = document.getElementById('reviews-container');
+    const today = todayIso();
+    container.innerHTML = REVIEW_DATES.map(r => {
+      const review = state.reviews[r.id] || {};
+      const isDone = review.saved;
+      const isAvailable = today >= r.date;
+      const status = isDone ? 'done' : (isAvailable ? 'available' : 'locked');
+      const statusText = isDone ? '✓ Saved' : (isAvailable ? '● Ready' : 'Opens ' + r.date);
+      const isOpen = review._open;
+      return `<div class="review-block ${status}">
+        <div class="review-head" onclick="toggleReview('${r.id}')">
+          <div class="review-title"><em>${r.label}</em></div>
+          <div class="review-status ${status}">${statusText}</div>
+        </div>
+        <div class="review-body ${isOpen ? 'open' : ''}">
+          <h4>State of mind (1–10)</h4>
+          ${renderRating(r.id, 'stateOfMind', review.stateOfMind || 0)}
+          <h4>Your skills</h4>
+          ${SKILLS.map(s => `<div class="rating-row">
+            <div class="rating-label">${s.name}</div>
+            ${renderRating(r.id, 'skill_' + s.id, (review['skill_' + s.id]) || 0)}
+          </div>`).join('')}
+          <h4>Your habits</h4>
+          ${RELEASE.map(h => `<div class="rating-row">
+            <div class="rating-label">Released: ${h.name.replace('Did not ', '')}</div>
+            ${renderRating(r.id, 'rel_' + h.id, (review['rel_' + h.id]) || 0)}
+          </div>`).join('')}
+          ${BLOOM.map(h => `<div class="rating-row">
+            <div class="rating-label">Bloomed: ${h.name}</div>
+            ${renderRating(r.id, 'bloom_' + h.id, (review['bloom_' + h.id]) || 0)}
+          </div>`).join('')}
+          <h4>What went well</h4>
+          <textarea onchange="setReviewField('${r.id}', 'wins', this.value)" placeholder="Wins, joys, moments that felt good...">${review.wins || ''}</textarea>
+          <h4>What I want to improve</h4>
+          <textarea onchange="setReviewField('${r.id}', 'improve', this.value)" placeholder="Where I want to be more honest with myself.">${review.improve || ''}</textarea>
+          <h4>How I want next month to feel</h4>
+          <textarea onchange="setReviewField('${r.id}', 'adjustments', this.value)" placeholder="Small shifts. Nothing dramatic.">${review.adjustments || ''}</textarea>
+          <button class="save" onclick="saveReview('${r.id}')">${isDone ? 'Update' : 'Save Reflection'}</button>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  function renderRating(reviewId, key, value) {
+    let html = '<div class="rating-input">';
+    for (let i = 1; i <= 10; i++) {
+      html += `<button class="rating-dot ${value >= i ? 'filled' : ''}" onclick="setRating('${reviewId}', '${key}', ${i})">${i}</button>`;
+    }
+    html += '</div>';
+    return html;
+  }
+
+  // ============ STREAKS ============
+  function computeReleaseStreak(habitId) {
+    let streak = 0;
+    let d = isoToDate(viewingDate);
+    while (d >= START_DATE) {
+      const iso = dateToIso(d);
+      const day = state.days[iso];
+      if (day && day.release && day.release[habitId]) {
+        streak++;
+        d.setDate(d.getDate() - 1);
+      } else break;
+    }
+    return streak;
+  }
+
+  function computeBloomStreak(habitId) {
+    let streak = 0;
+    let d = isoToDate(viewingDate);
+    while (d >= START_DATE) {
+      const iso = dateToIso(d);
+      const day = state.days[iso];
+      if (day && day.bloom && day.bloom[habitId]) {
+        streak++;
+        d.setDate(d.getDate() - 1);
+      } else break;
+    }
+    return streak;
+  }
+
+  // ============ ACTIONS ============
+  function toggleRhythm(id) {
+    const day = getDay(viewingDate);
+    day.rhythm[id] = !day.rhythm[id];
+    saveState();
+    render();
+  }
+  function toggleRelease(id) {
+    const day = getDay(viewingDate);
+    day.release[id] = !day.release[id];
+    saveState();
+    render();
+  }
+  function toggleBloom(id) {
+    const day = getDay(viewingDate);
+    day.bloom[id] = !day.bloom[id];
+    saveState();
+    render();
+  }
+  function saveDayNote() {
+    const day = getDay(viewingDate);
+    day.note = document.getElementById('daily-note').value;
+    saveState();
+  }
+  function logFocusHour() {
+    const mins = parseInt(document.getElementById('focus-minutes').value) || 0;
+    const skillId = parseInt(document.getElementById('focus-skill-select').value);
+    if (mins <= 0) { showToast('Add minutes first'); return; }
+    const day = getDay(viewingDate);
+    const oldMins = day.focusHour.minutes || 0;
+    const oldSkillId = day.focusHour.skillId;
+    if (day.focusHour.logged && oldSkillId) {
+      state.skillHours[oldSkillId] = Math.max(0, (state.skillHours[oldSkillId] || 0) - oldMins);
+    }
+    state.skillHours[skillId] = (state.skillHours[skillId] || 0) + mins;
+    day.focusHour = { logged: true, minutes: mins, skillId };
+    saveState();
+    render();
+    showToast(`${mins} min added to ${SKILLS.find(s => s.id === skillId).name}`);
+  }
+  function changeDay(delta) {
+    const d = isoToDate(viewingDate);
+    d.setDate(d.getDate() + delta);
+    viewingDate = dateToIso(d);
+    render();
+  }
+  function toggleReview(id) {
+    if (!state.reviews[id]) state.reviews[id] = {};
+    state.reviews[id]._open = !state.reviews[id]._open;
+    render();
+  }
+  function setRating(reviewId, key, value) {
+    if (!state.reviews[reviewId]) state.reviews[reviewId] = {};
+    state.reviews[reviewId][key] = value;
+    saveState();
+    render();
+  }
+  function setReviewField(reviewId, key, value) {
+    if (!state.reviews[reviewId]) state.reviews[reviewId] = {};
+    state.reviews[reviewId][key] = value;
+    saveState();
+  }
+  function saveReview(id) {
+    if (!state.reviews[id]) state.reviews[id] = {};
+    state.reviews[id].saved = true;
+    state.reviews[id].savedAt = new Date().toISOString();
+    saveState();
+    render();
+    showToast('Reflection saved');
+  }
+
+  // ============ EXPORT / IMPORT / WIPE ============
+  function exportData() {
+    const data = JSON.stringify(state, null, 2);
+    const blob = new Blob([data], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `becoming-her-backup-${todayIso()}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('Backup exported');
+  }
+  function importData() {
+    const input = document.getElementById('file-input');
+    input.onchange = (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (evt) => {
+        try {
+          state = JSON.parse(evt.target.result);
+          saveState();
+          render();
+          showToast('Backup restored');
+        } catch (err) { showToast('Invalid backup file'); }
+      };
+      reader.readAsText(file);
+    };
+    input.click();
+  }
+  function wipeAll() {
+    if (!confirm('Wipe all your data? This cannot be undone. Export a backup first if you want to keep a record.')) return;
+    if (!confirm('Are you sure? Last chance.')) return;
+    state = { days: {}, skillHours: {}, reviews: {} };
+    saveState();
+    render();
+    showToast('All data wiped');
+  }
+
+  // ============ VISION MODAL ============
+  function openVision() {
+    document.getElementById('vision-modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    window.scrollTo(0, 0);
+  }
+  function closeVision() {
+    document.getElementById('vision-modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function closeVisionOnBackdrop(e) {
+    if (e.target.id === 'vision-modal') closeVision();
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeVision();
+  });
+
+  // ============ TOAST ============
+  let toastTimer;
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 2400);
+  }
+
+  // ============ INIT ============
+  viewingDate = clampDay(todayIso());
+  render();
+  setInterval(renderCounter, 60000);
+</script>
+</body>
+</html>
