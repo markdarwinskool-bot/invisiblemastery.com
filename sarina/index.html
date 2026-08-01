@@ -34,9 +34,52 @@
     --body: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
   }
 
+  body.dark {
+    --bg: #2A1F26;
+    --bg-elev: #362A32;
+    --bg-elev-2: #423540;
+    --line: #4A3D45;
+    --line-strong: #5C4F55;
+    --text: #F0E4DA;
+    --text-mute: #B09A9D;
+    --text-dim: #7A6B70;
+    --signal: #C89898;
+    --signal-soft: rgba(200, 152, 152, 0.15);
+    --gold: #C4AC7A;
+    --complete: #A8B590;
+  }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { background: var(--bg); color: var(--text); font-family: var(--body); font-weight: 400; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  html, body { background: var(--bg); color: var(--text); font-family: var(--body); font-weight: 400; line-height: 1.6; -webkit-font-smoothing: antialiased; transition: background 400ms, color 400ms; }
   body { min-height: 100vh; padding: 0 0 80px 0; }
+
+  /* Theme toggle */
+  .theme-toggle {
+    background: transparent;
+    border: 1px solid var(--line-strong);
+    color: var(--text);
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 200ms;
+    padding: 0;
+  }
+  .theme-toggle:hover {
+    border-color: var(--signal);
+    color: var(--signal);
+  }
+  .theme-toggle svg {
+    width: 18px;
+    height: 18px;
+  }
+  .theme-toggle .icon-sun { display: block; }
+  .theme-toggle .icon-moon { display: none; }
+  body.dark .theme-toggle .icon-sun { display: none; }
+  body.dark .theme-toggle .icon-moon { display: block; }
 
   .container { max-width: 900px; margin: 0 auto; padding: 24px 22px; }
 
@@ -746,6 +789,24 @@
     .vision-body p { font-size: 17px; margin-bottom: 22px; }
     .vision-body p:first-child { font-size: 19px; }
     .rating-row { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .sleep-strip {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
+      padding: 16px;
+    }
+    .sleep-strip-label {
+      margin-right: 0;
+      margin-bottom: 2px;
+      font-size: 22px;
+    }
+    .sleep-item {
+      justify-content: space-between;
+      width: 100%;
+    }
+    .sleep-select {
+      min-width: 120px;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -759,6 +820,22 @@
   <div class="top-bar">
     <div class="brand"><em>Becoming</em> <span class="brand-accent">Her</span></div>
     <div class="top-bar-right">
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"/>
+          <line x1="12" y1="2" x2="12" y2="4"/>
+          <line x1="12" y1="20" x2="12" y2="22"/>
+          <line x1="2" y1="12" x2="4" y2="12"/>
+          <line x1="20" y1="12" x2="22" y2="12"/>
+          <line x1="4.9" y1="4.9" x2="6.3" y2="6.3"/>
+          <line x1="17.7" y1="17.7" x2="19.1" y2="19.1"/>
+          <line x1="4.9" y1="19.1" x2="6.3" y2="17.7"/>
+          <line x1="17.7" y1="6.3" x2="19.1" y2="4.9"/>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
       <button class="vision-btn" onclick="openVision()">Read Vision</button>
       <div class="today-date" id="today-date">—</div>
     </div>
@@ -1394,6 +1471,24 @@
     clearTimeout(toastTimer);
     toastTimer = setTimeout(() => t.classList.remove('show'), 2400);
   }
+
+  // ============ THEME ============
+  const THEME_KEY = 'becoming_her_theme';
+  function loadTheme() {
+    try {
+      const saved = localStorage.getItem(THEME_KEY);
+      if (saved === 'dark') document.body.classList.add('dark');
+    } catch (e) {}
+  }
+  function toggleTheme() {
+    document.body.classList.toggle('dark');
+    const isDark = document.body.classList.contains('dark');
+    try { localStorage.setItem(THEME_KEY, isDark ? 'dark' : 'light'); } catch (e) {}
+    // Update the browser status bar color
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', isDark ? '#2A1F26' : '#FBF6F0');
+  }
+  loadTheme();
 
   // ============ INIT ============
   viewingDate = clampDay(todayIso());
