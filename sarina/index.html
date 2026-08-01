@@ -4,6 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Becoming Her — Sarina</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Becoming Her">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#FBF6F0">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="apple-touch-icon" sizes="152x152" href="icon-152.png">
+<link rel="apple-touch-icon" sizes="120x120" href="icon-120.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<link rel="icon" type="image/png" sizes="180x180" href="icon-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Lato:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -179,6 +188,52 @@
     font-size: 17px;
     color: var(--text);
   }
+
+  /* Sleep tracker strip */
+  .sleep-strip {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 32px;
+    padding: 16px 20px;
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--gold);
+    border-radius: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .sleep-strip-label {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 20px;
+    color: var(--text);
+    margin-right: 8px;
+  }
+  .sleep-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .sleep-item-tag {
+    font-family: var(--body);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--text-mute);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .sleep-select {
+    background: var(--bg);
+    border: 1px solid var(--line-strong);
+    color: var(--text);
+    padding: 7px 12px;
+    font-family: var(--body);
+    font-size: 13px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .sleep-select:focus { outline: none; border-color: var(--signal); }
 
   /* Sections */
   section { margin-bottom: 48px; }
@@ -729,6 +784,19 @@
     <button onclick="changeDay(1)">Next ▶</button>
   </div>
 
+  <!-- SLEEP TRACKER -->
+  <div class="sleep-strip">
+    <div class="sleep-strip-label"><em>Sleep Log</em></div>
+    <div class="sleep-item">
+      <span class="sleep-item-tag">Slept</span>
+      <select class="sleep-select" id="sleep-time" onchange="setSleepTime()"></select>
+    </div>
+    <div class="sleep-item">
+      <span class="sleep-item-tag">Woke</span>
+      <select class="sleep-select" id="wake-time" onchange="setWakeTime()"></select>
+    </div>
+  </div>
+
   <!-- RHYTHM -->
   <section>
     <div class="section-head">
@@ -934,6 +1002,7 @@
   function getDay(iso) {
     if (!state.days[iso]) state.days[iso] = {
       rhythm: {}, release: {}, bloom: {},
+      sleepTime: '', wakeTime: '',
       focusHour: { logged: false, minutes: 0, skillId: null },
       note: ''
     };
@@ -950,6 +1019,7 @@
     renderBloom();
     renderNote();
     renderFocusHour();
+    populateSleepDropdowns();
     renderSkills();
     renderGrowth();
     renderReviews();
@@ -1170,6 +1240,46 @@
   function saveDayNote() {
     const day = getDay(viewingDate);
     day.note = document.getElementById('daily-note').value;
+    saveState();
+  }
+
+  // ============ SLEEP TRACKER ============
+  const SLEEP_TIMES = [
+    '', '20:00','20:30','21:00','21:30','22:00','22:30','23:00','23:30',
+    '00:00','00:30','01:00','01:30','02:00','02:30','03:00'
+  ];
+  const WAKE_TIMES = [
+    '', '05:00','05:30','06:00','06:30','07:00','07:30','08:00','08:30',
+    '09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00'
+  ];
+  function fmtTime(t) {
+    if (!t) return '—';
+    const [h, m] = t.split(':').map(Number);
+    const period = h < 12 ? 'am' : 'pm';
+    const h12 = h === 0 ? 12 : (h > 12 ? h - 12 : h);
+    return `${h12}:${m.toString().padStart(2, '0')}${period}`;
+  }
+  function populateSleepDropdowns() {
+    const sleepSel = document.getElementById('sleep-time');
+    const wakeSel = document.getElementById('wake-time');
+    if (!sleepSel.options.length) {
+      sleepSel.innerHTML = SLEEP_TIMES.map(t => `<option value="${t}">${fmtTime(t)}</option>`).join('');
+    }
+    if (!wakeSel.options.length) {
+      wakeSel.innerHTML = WAKE_TIMES.map(t => `<option value="${t}">${fmtTime(t)}</option>`).join('');
+    }
+    const day = getDay(viewingDate);
+    sleepSel.value = day.sleepTime || '';
+    wakeSel.value = day.wakeTime || '';
+  }
+  function setSleepTime() {
+    const day = getDay(viewingDate);
+    day.sleepTime = document.getElementById('sleep-time').value;
+    saveState();
+  }
+  function setWakeTime() {
+    const day = getDay(viewingDate);
+    day.wakeTime = document.getElementById('wake-time').value;
     saveState();
   }
   function logFocusHour() {
