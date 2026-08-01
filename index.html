@@ -565,6 +565,48 @@
     .rating-row { flex-direction: column; align-items: flex-start; gap: 6px; }
   }
 
+  /* Sleep tracker strip */
+  .sleep-strip {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+    padding: 14px 16px;
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--warn);
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .sleep-strip-label {
+    font-family: var(--display);
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    color: var(--text);
+    margin-right: 8px;
+  }
+  .sleep-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .sleep-item-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--text-mute);
+    text-transform: uppercase;
+  }
+  .sleep-select {
+    background: var(--bg);
+    border: 1px solid var(--line-strong);
+    color: var(--text);
+    padding: 6px 10px;
+    font-family: var(--mono);
+    font-size: 12px;
+    cursor: pointer;
+  }
+  .sleep-select:focus { outline: none; border-color: var(--warn); }
+
   /* Top bar right group + vision button */
   .top-bar-right {
     display: flex;
@@ -689,12 +731,12 @@
   <div class="counter-block">
     <div class="counter-label">Campaign Day</div>
     <div class="counter-main">
-      <div class="counter-day" id="counter-day">001<span class="of">/ 123</span></div>
-      <div class="counter-remaining"><span>Remaining —</span> <span id="remaining-days">122</span> days</div>
+      <div class="counter-day" id="counter-day">001<span class="of">/ 122</span></div>
+      <div class="counter-remaining"><span>Remaining —</span> <span id="remaining-days">121</span> days</div>
     </div>
     <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width: 0.8%"></div></div>
     <div class="progress-meta">
-      <span>31 JUL 2026</span>
+      <span>1 AUG 2026</span>
       <span id="pct-complete">0.8% complete</span>
       <span>30 NOV 2026</span>
     </div>
@@ -703,8 +745,21 @@
   <!-- DAY NAVIGATION -->
   <div class="day-nav">
     <button onclick="changeDay(-1)">◀ PREV</button>
-    <div class="current-day" id="current-day-label">Day 1 — Fri 31 Jul 2026</div>
+    <div class="current-day" id="current-day-label">Day 1 — Sat 1 Aug 2026</div>
     <button onclick="changeDay(1)">NEXT ▶</button>
+  </div>
+
+  <!-- SLEEP TRACKER -->
+  <div class="sleep-strip">
+    <div class="sleep-strip-label">SLEEP LOG</div>
+    <div class="sleep-item">
+      <span class="sleep-item-tag">Slept</span>
+      <select class="sleep-select" id="sleep-time" onchange="setSleepTime()"></select>
+    </div>
+    <div class="sleep-item">
+      <span class="sleep-item-tag">Woke</span>
+      <select class="sleep-select" id="wake-time" onchange="setWakeTime()"></select>
+    </div>
   </div>
 
   <!-- TODAY -->
@@ -740,6 +795,18 @@
     <div class="row" data-key="wake">
       <div class="checkbox"></div>
       <div class="row-label">Woke 6–8am today</div>
+    </div>
+    <div class="row" data-key="journal">
+      <div class="checkbox"></div>
+      <div class="row-label">Morning journal + SoGR statement</div>
+    </div>
+    <div class="row" data-key="worked">
+      <div class="checkbox"></div>
+      <div class="row-label">Worked today — did what had to be done</div>
+    </div>
+    <div class="row" data-key="gratitude">
+      <div class="checkbox"></div>
+      <div class="row-label">Gratitude before bed</div>
     </div>
 
     <!-- FOCUSED HOUR -->
@@ -848,9 +915,9 @@
 
 <script>
   // ============ CONFIG ============
-  const START_DATE = new Date('2026-07-31T00:00:00');
+  const START_DATE = new Date('2026-08-01T00:00:00');
   const END_DATE = new Date('2026-11-30T23:59:59');
-  const TOTAL_DAYS = 123;
+  const TOTAL_DAYS = 122;
 
   const SKILLS = [
     { id: 1, name: 'Job Applications', target: 40, type: 'daily', window: 'Continuous — apply daily' },
@@ -937,7 +1004,7 @@
 
   function clampDay(iso) {
     const dn = dayNumber(iso);
-    if (dn < 1) return '2026-07-31';
+    if (dn < 1) return '2026-08-01';
     if (dn > TOTAL_DAYS) return '2026-11-30';
     return iso;
   }
@@ -945,6 +1012,8 @@
   function getDay(iso) {
     if (!state.days[iso]) state.days[iso] = {
       gym: false, gymSplit: null, walk: false, food: false, sleep: false, wake: false,
+      journal: false, worked: false, gratitude: false,
+      sleepTime: '', wakeTime: '',
       focusHour: { logged: false, minutes: 0, skillId: null },
       kill: {}, build: {}, note: ''
     };
@@ -977,6 +1046,7 @@
     renderCounter();
     renderDayNav();
     renderToday();
+    populateSleepDropdowns();
     renderKillList();
     renderBuildList();
     renderNote();
@@ -1007,8 +1077,8 @@
 
   function renderToday() {
     const day = getDay(viewingDate);
-    ['gym', 'walk', 'food', 'sleep', 'wake'].forEach(k => {
-      const row = document.querySelector(`.row[data-key="${k}"]`);
+    document.querySelectorAll('.row[data-key]').forEach(row => {
+      const k = row.dataset.key;
       if (day[k]) row.classList.add('done');
       else row.classList.remove('done');
     });
@@ -1224,6 +1294,46 @@
   function saveDayNote() {
     const day = getDay(viewingDate);
     day.note = document.getElementById('daily-note').value;
+    saveState();
+  }
+
+  // ============ SLEEP TRACKER ============
+  const SLEEP_TIMES = [
+    '', '20:00','20:30','21:00','21:30','22:00','22:30','23:00','23:30',
+    '00:00','00:30','01:00','01:30','02:00','02:30','03:00'
+  ];
+  const WAKE_TIMES = [
+    '', '04:00','04:30','05:00','05:30','06:00','06:30','07:00','07:30',
+    '08:00','08:30','09:00','09:30','10:00','10:30','11:00'
+  ];
+  function fmtTime(t) {
+    if (!t) return '—';
+    const [h, m] = t.split(':').map(Number);
+    const period = h < 12 ? 'am' : 'pm';
+    const h12 = h === 0 ? 12 : (h > 12 ? h - 12 : h);
+    return `${h12}:${m.toString().padStart(2, '0')}${period}`;
+  }
+  function populateSleepDropdowns() {
+    const sleepSel = document.getElementById('sleep-time');
+    const wakeSel = document.getElementById('wake-time');
+    if (!sleepSel.options.length) {
+      sleepSel.innerHTML = SLEEP_TIMES.map(t => `<option value="${t}">${fmtTime(t)}</option>`).join('');
+    }
+    if (!wakeSel.options.length) {
+      wakeSel.innerHTML = WAKE_TIMES.map(t => `<option value="${t}">${fmtTime(t)}</option>`).join('');
+    }
+    const day = getDay(viewingDate);
+    sleepSel.value = day.sleepTime || '';
+    wakeSel.value = day.wakeTime || '';
+  }
+  function setSleepTime() {
+    const day = getDay(viewingDate);
+    day.sleepTime = document.getElementById('sleep-time').value;
+    saveState();
+  }
+  function setWakeTime() {
+    const day = getDay(viewingDate);
+    day.wakeTime = document.getElementById('wake-time').value;
     saveState();
   }
 
