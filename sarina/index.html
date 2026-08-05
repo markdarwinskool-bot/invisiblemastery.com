@@ -135,7 +135,7 @@
 
   /* Signature: day counter */
   .counter-block {
-    padding: 40px 0 48px;
+    padding: 24px 0 48px;
     border-bottom: 1px solid var(--line);
     margin-bottom: 40px;
     text-align: center;
@@ -153,23 +153,27 @@
     font-family: var(--display);
     font-style: italic;
     font-weight: 500;
-    font-size: clamp(110px, 24vw, 220px);
+    font-size: clamp(95px, 21vw, 185px);
     line-height: 0.9;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
     color: var(--text);
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
   }
   .counter-day .of {
     color: var(--gold);
-    font-size: 0.35em;
-    margin-left: 12px;
+    font-size: 0.32em;
+    margin-left: 0;
     font-style: italic;
+    letter-spacing: 0;
   }
   .counter-remaining {
     font-family: var(--display);
     font-style: italic;
     font-size: 20px;
     color: var(--text-mute);
-    margin-top: 16px;
+    margin-top: 36px;
   }
   .counter-remaining span.num { color: var(--signal); font-weight: 500; }
 
@@ -1008,7 +1012,9 @@
     { id: 8, name: 'Cooking', sub: '(if today)' },
     { id: 9, name: 'Grooming my cats', sub: '(if today)' },
     { id: 10, name: 'Gratitude before bed' },
-    { id: 11, name: 'Take collagens' }
+    { id: 11, name: 'Take collagens' },
+    { id: 12, name: 'Walking' },
+    { id: 13, name: 'Fruits' }
   ];
 
   const RELEASE = [
